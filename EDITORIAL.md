@@ -4,7 +4,7 @@ This is the operating manual for the automated daily edition. The daily agent mu
 
 ## The job
 
-Publish **exactly two new profile articles per run**, celebrating people doing genuinely good, *recently reported* work. Focus: Madhya Pradesh (politicians, MLAs, ministers, IAS/IPS officers and other public servants, athletes, actors and artists, entrepreneurs, scientists). Occasionally (at most ~2 stories per week) a national-level figure.
+Publish **exactly two new profile articles per run** — even if articles dated today already exist in `src/articles/` (those are manual backfills or special editions and do not satisfy your run; existing coverage only matters for the no-repeat rule below). Celebrate people doing genuinely good, *recently reported* work. Focus: Madhya Pradesh (politicians, MLAs, ministers, IAS/IPS officers and other public servants, athletes, actors and artists, entrepreneurs, scientists). Occasionally (at most ~2 stories per week) a national-level figure.
 
 ## Picking the two subjects
 
