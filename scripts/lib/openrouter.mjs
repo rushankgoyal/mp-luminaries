@@ -36,6 +36,7 @@ export async function generatePortrait(output, prompt, refUrl) {
     body: JSON.stringify({
       model: MODEL,
       modalities: ["image", "text"],
+      max_tokens: Number(process.env.OPENROUTER_MAX_TOKENS || 8192),
       messages: [{ role: "user", content }],
     }),
   });
