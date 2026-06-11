@@ -12,7 +12,7 @@ export function loadKey() {
 }
 
 export function housePrompt(person, hasRef) {
-  const base = `Create a dignified painterly editorial magazine illustration${hasRef ? " based on this reference photo" : ""} of ${person}: 16:10 landscape composition, visible oil-paint brushstrokes, warm earthy palette with saffron and terracotta accents, soft flat muted background, clearly an artistic hand-painted illustration rather than a photograph.`;
+  const base = `Create a dignified painterly editorial magazine illustration${hasRef ? " based on this reference photo" : ""} of ${person}: 16:10 landscape composition, visible oil-paint brushstrokes, warm earthy palette with saffron and terracotta accents, soft flat muted background, clearly an artistic hand-painted illustration rather than a photograph. Absolutely no text, words, lettering, titles, captions or watermarks anywhere in the image.`;
   return hasRef
     ? base + " Preserve the person's facial likeness but do not copy the photo's composition, framing or background — create an original artwork informed by it."
     : base + " Do not attempt a specific real person's likeness; depict the scene and role evocatively.";
