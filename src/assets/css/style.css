@@ -179,7 +179,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
 .card-body time { font-family: var(--sans); font-size: .72rem; color: var(--ink-soft); margin-top: auto; }
 
 /* ---------- Mission band ---------- */
-.mission { margin: 3.5rem -50vw 0; padding: 3rem 50vw; background: var(--ink); color: var(--paper); position: relative; left: 50%; transform: translateX(-50%); width: 100vw; }
+.mission { margin: 3.5rem calc(50% - 50vw) 0; padding: 3rem 1.25rem; background: var(--ink); color: var(--paper); }
 .mission-inner { max-width: 680px; margin: 0 auto; text-align: center; }
 .mission h2 { font-family: var(--serif); font-size: 1.7rem; margin: 0 0 .8rem; }
 .mission p { color: #cfc9bd; }
