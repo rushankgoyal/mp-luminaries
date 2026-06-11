@@ -5,6 +5,7 @@ role: "International rifle shooter"
 category: sports
 date: 2026-06-11
 image: /assets/images/2026-06-11-aishwary-tomar.png
+imageRef: "https://upload.wikimedia.org/wikipedia/commons/8/85/Aishwary_at_ISSF_2025.jpg"
 imageAlt: "Editorial illustration of rifle shooter Aishwary Pratap Singh Tomar"
 summary: "The 25-year-old from Ratanpur village shot a world record to defend his Asian Championships gold in the 50m rifle 3 positions — his fifth individual continental medal, and the loudest statement yet from Madhya Pradesh's quietest champion."
 sources:

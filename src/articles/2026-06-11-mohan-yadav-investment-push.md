@@ -5,6 +5,7 @@ role: "Chief Minister, Madhya Pradesh"
 category: governance
 date: 2026-06-11
 image: /assets/images/2026-06-11-mohan-yadav.png
+imageRef: "https://upload.wikimedia.org/wikipedia/commons/5/55/Mohan_Yadav_CM.jpg"
 imageAlt: "Editorial illustration of Chief Minister Dr. Mohan Yadav"
 summary: "From a ₹2,360-crore economic corridor in Indore to a trade forum bridging India and Latin America, the Chief Minister is methodically repositioning Madhya Pradesh as one of India's serious investment destinations."
 sources:
