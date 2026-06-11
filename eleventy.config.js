@@ -1,7 +1,4 @@
-import { HtmlBasePlugin } from "@11ty/eleventy";
-
 export default function (eleventyConfig) {
-  eleventyConfig.addPlugin(HtmlBasePlugin);
   eleventyConfig.addPassthroughCopy("src/assets");
 
   eleventyConfig.addCollection("articles", (api) =>
