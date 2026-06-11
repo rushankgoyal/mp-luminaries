@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+---
+{% set shareUrl = site.url + (page.url | url) %}
+<article class="article">
+  <header class="article-header">
+    <a class="badge" href="{{ ('/category/' + category + '/') | url }}">{{ category | categoryName(site.categories) }}</a>
+    <h1>{{ title }}</h1>
+    <p class="dek">{{ summary }}</p>
+    <div class="meta-row">
+      <span>{{ person }}{% if role %} · {{ role }}{% endif %}</span>
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+    </div>
+  </header>
+
+  <figure class="article-figure">
+    <img src="{{ image | url }}" alt="{{ imageAlt or ('Illustration of ' + person) }}" width="1200" height="675">
+    <figcaption>Editorial illustration of {{ person }} · AI-assisted artwork, MP Luminaries</figcaption>
+  </figure>
+
+  <div class="article-body">
+    {{ content | safe }}
+  </div>
+
+  {% if sources and sources.length %}
+  <aside class="sources">
+    <h2>Reporting this story draws on</h2>
+    <ol>
+      {%- for s in sources %}
+      <li><a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.title }}</a></li>
+      {%- endfor %}
+    </ol>
+  </aside>
+  {% endif %}
+
+  <div class="share">
+    <span>Share this story</span>
+    <a href="https://wa.me/?text={{ (title + ' — ' + shareUrl) | urlencode }}" rel="noopener" target="_blank">WhatsApp</a>
+    <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ shareUrl | urlencode }}" rel="noopener" target="_blank">X</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{ shareUrl | urlencode }}" rel="noopener" target="_blank">Facebook</a>
+    <a href="https://t.me/share/url?url={{ shareUrl | urlencode }}&text={{ title | urlencode }}" rel="noopener" target="_blank">Telegram</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ shareUrl | urlencode }}" rel="noopener" target="_blank">LinkedIn</a>
+  </div>
+</article>
+
+{% set more = collections.articles | byCategory(category) | limit(4) %}
+{% if more.length > 1 %}
+<section class="more">
+  <h2 class="section-title">More from {{ category | categoryName(site.categories) }}</h2>
+  <div class="card-grid">
+    {%- for a in more %}{% if a.url != page.url %}
+    <a class="card" href="{{ a.url | url }}">
+      <img src="{{ a.data.image | url }}" alt="" loading="lazy">
+      <div class="card-body">
+        <span class="badge badge-sm">{{ a.data.category | categoryName(site.categories) }}</span>
+        <h3>{{ a.data.title }}</h3>
+        <time>{{ a.date | readableDate }}</time>
+      </div>
+    </a>
+    {% endif %}{%- endfor %}
+  </div>
+</section>
+{% endif %}

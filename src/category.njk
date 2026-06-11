@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: site.categories
+  size: 1
+  alias: cat
+permalink: "/category/{{ cat.slug }}/"
+eleventyComputed:
+  title: "{{ cat.name }}"
+---
+<section class="category-page">
+  <header class="category-header">
+    <h1>{{ cat.name }}</h1>
+  </header>
+  {% set posts = collections.articles | byCategory(cat.slug) %}
+  {% if posts.length %}
+  <div class="card-grid">
+    {%- for a in posts %}
+    <a class="card" href="{{ a.url | url }}">
+      <img src="{{ a.data.image | url }}" alt="" loading="lazy">
+      <div class="card-body">
+        <span class="badge badge-sm">{{ a.data.category | categoryName(site.categories) }}</span>
+        <h3>{{ a.data.title }}</h3>
+        <p>{{ a.data.summary }}</p>
+        <time>{{ a.date | readableDate }}</time>
+      </div>
+    </a>
+    {%- endfor %}
+  </div>
+  {% else %}
+  <p class="empty">Stories in this section are coming soon — new profiles publish every evening at 8 PM IST.</p>
+  {% endif %}
+</section>

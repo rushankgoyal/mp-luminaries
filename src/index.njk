@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+permalink: /
+---
+{% set latest = collections.articles | limit(1) | first %}
+{% set rest = collections.articles | limit(13) %}
+
+{% if latest %}
+<section class="hero">
+  <a class="hero-link" href="{{ latest.url | url }}">
+    <div class="hero-media">
+      <img src="{{ latest.data.image | url }}" alt="{{ latest.data.imageAlt or latest.data.person }}">
+    </div>
+    <div class="hero-text">
+      <span class="badge">{{ latest.data.category | categoryName(site.categories) }}</span>
+      <h1>{{ latest.data.title }}</h1>
+      <p class="dek">{{ latest.data.summary }}</p>
+      <div class="meta-row">
+        <span>{{ latest.data.person }}</span>
+        <time>{{ latest.date | readableDate }}</time>
+      </div>
+    </div>
+  </a>
+</section>
+{% endif %}
+
+<section class="latest">
+  <h2 class="section-title">Latest stories</h2>
+  <div class="card-grid">
+    {%- for a in rest %}{% if loop.index > 1 %}
+    <a class="card" href="{{ a.url | url }}">
+      <img src="{{ a.data.image | url }}" alt="" loading="lazy">
+      <div class="card-body">
+        <span class="badge badge-sm">{{ a.data.category | categoryName(site.categories) }}</span>
+        <h3>{{ a.data.title }}</h3>
+        <p>{{ a.data.summary }}</p>
+        <time>{{ a.date | readableDate }}</time>
+      </div>
+    </a>
+    {% endif %}{%- endfor %}
+  </div>
+</section>
+
+<section class="mission">
+  <div class="mission-inner">
+    <h2>Why we publish</h2>
+    <p>Most news tells you what went wrong. Every evening at 8 PM, MP Luminaries tells you who is getting it right — the collectors and ministers, athletes and artists, founders and officers whose work is quietly changing Madhya Pradesh. Two stories a day, every claim sourced.</p>
+    <a class="button" href="{{ '/about/' | url }}">About MP Luminaries</a>
+  </div>
+</section>

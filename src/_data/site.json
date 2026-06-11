@@ -1,0 +1,15 @@
+{
+  "name": "MP Luminaries",
+  "tagline": "The people building Madhya Pradesh",
+  "description": "Daily profiles celebrating the public servants, athletes, artists and entrepreneurs doing remarkable work in Madhya Pradesh — and the national figures shaping India.",
+  "url": "https://example.com",
+  "email": "rushankgoyal94@gmail.com",
+  "categories": [
+    { "slug": "governance", "name": "Governance" },
+    { "slug": "administration", "name": "Administration" },
+    { "slug": "sports", "name": "Sports" },
+    { "slug": "cinema-arts", "name": "Cinema & Arts" },
+    { "slug": "business", "name": "Business & Innovation" },
+    { "slug": "national", "name": "National Spotlight" }
+  ]
+}

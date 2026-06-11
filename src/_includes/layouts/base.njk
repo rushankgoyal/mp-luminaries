@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ summary or site.description }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ summary or site.description }}">
+  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image | url }}">{% endif %}
+  <meta property="og:type" content="{% if layout == 'layouts/article.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url | url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ '/feed.xml' | url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+  <link rel="icon" href="{{ '/assets/images/favicon.svg' | url }}" type="image/svg+xml">
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <p class="masthead-date">{{ page.date | readableDate if page.date else "" }}&nbsp;</p>
+      <a class="logotype" href="{{ '/' | url }}">MP&nbsp;Luminaries</a>
+      <p class="tagline">{{ site.tagline }}</p>
+    </div>
+    <nav class="mainnav" aria-label="Categories">
+      <div class="mainnav-inner">
+        <a href="{{ '/' | url }}">Home</a>
+        {%- for cat in site.categories %}
+        <a href="{{ ('/category/' + cat.slug + '/') | url }}">{{ cat.name }}</a>
+        {%- endfor %}
+        <a href="{{ '/about/' | url }}">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="footer-logo">MP Luminaries</p>
+        <p>{{ site.description }}</p>
+        <p class="footer-note">Portraits on this site are original AI-assisted editorial illustrations, not photographs. Every story is grounded in published reporting, linked at the end of each article. Corrections: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      </div>
+      <div class="footer-links">
+        <p class="footer-heading">Sections</p>
+        {%- for cat in site.categories %}
+        <a href="{{ ('/category/' + cat.slug + '/') | url }}">{{ cat.name }}</a>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="footer-bottom">© {{ site.name }} · New stories every evening at 8 PM IST · <a href="{{ '/feed.xml' | url }}">RSS</a></div>
+  </footer>
+</body>
+</html>
