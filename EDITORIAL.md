@@ -25,7 +25,7 @@ Publish **exactly two new profile articles per run**, celebrating people doing g
 - 400–600 words. Warm, concrete, specific — admiration earned through detail, not adjectives. No "visionary leader" boilerplate; show the corridor, the medal, the policy count.
 - Structure: a sharp lede tied to the news hook → context and what the person actually did → one `## subhead` section with the numbers or backstory → a short closing graf on why it matters to MP/India.
 - Bold key facts sparingly (`**₹2,360-crore**`). One blockquote allowed if a real, sourced quote exists.
-- Title pattern: evocative, person-anchored, ~8–14 words. Summary (dek): one sentence, 25–45 words.
+- Headlines: **simple, direct, plain English** that a reader with modest English instantly understands — and impactful because the achievement itself is impressive. No idioms, wordplay, puns or double meanings; they confuse or mislead (e.g. "Selling the World on Madhya Pradesh" can be misread as an accusation — write "Dr. Mohan Yadav Is Bringing the World's Investors to Madhya Pradesh" instead). State plainly who did what. Person-anchored, ~8–14 words. Summary (dek): one sentence, 25–45 words, same plain-English rule.
 
 ## Article file format
 

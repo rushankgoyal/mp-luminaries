@@ -1,5 +1,5 @@
 ---
-title: "Dr. Mohan Yadav Is Selling the World on Madhya Pradesh — and the World Is Buying"
+title: "Dr. Mohan Yadav Is Bringing the World's Investors to Madhya Pradesh"
 person: "Dr. Mohan Yadav"
 role: "Chief Minister, Madhya Pradesh"
 category: governance
