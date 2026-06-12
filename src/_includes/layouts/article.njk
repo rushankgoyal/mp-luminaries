@@ -15,7 +15,7 @@ layout: layouts/base.njk
 
   <figure class="article-figure">
     <img src="{{ image | url }}" alt="{{ imageAlt or ('Illustration of ' + person) }}" width="1200" height="675">
-    <figcaption>Editorial illustration of {{ person }} · AI-assisted artwork, MP Luminaries</figcaption>
+    <figcaption>{{ imageCaption or ('Editorial illustration of ' + person + ' · AI-assisted artwork, MP Luminaries') }}</figcaption>
   </figure>
 
   <div class="article-body">

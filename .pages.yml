@@ -1,0 +1,140 @@
+# Pages CMS configuration — https://pagescms.org/docs/
+#
+# This file defines the editor portal at https://app.pagescms.org.
+# Editors only see and edit what is declared here; nothing else in the
+# repository is exposed through the CMS.
+
+media:
+  input: src/assets/images
+  output: /assets/images
+  categories: [image]
+
+content:
+  - name: articles
+    label: Stories
+    description: One profile per file. Saving publishes to the live site within a few minutes.
+    type: collection
+    path: src/articles
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [image, title, person, category, date, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Headline
+        type: string
+        required: true
+        description: Plain English only — no idioms, puns or wordplay. Readers should understand it on first read.
+      - name: person
+        label: Person profiled
+        type: string
+        required: true
+      - name: role
+        label: Role / designation
+        type: string
+        description: "Shown next to the name, e.g. \"IAS officer · Collector, Shajapur\"."
+      - name: category
+        label: Section
+        type: select
+        required: true
+        options:
+          values:
+            - value: governance
+              label: Governance
+            - value: administration
+              label: Administration
+            - value: sports
+              label: Sports
+            - value: cinema-arts
+              label: Cinema & Arts
+            - value: business
+              label: Business & Innovation
+            - value: national
+              label: National Spotlight
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+      - name: published
+        label: Published
+        type: boolean
+        default: true
+        description: Switch off to unpublish — the story disappears from the site on the next build.
+      - name: image
+        label: Artwork
+        type: image
+        description: 16:10 landscape illustration. Leave empty for new stories — artwork is generated automatically from the image prompt below.
+      - name: imageAlt
+        label: Image alt text
+        type: string
+        description: One-sentence description of the artwork for screen readers.
+      - name: imageCaption
+        label: Image caption
+        type: string
+        description: "Shown under the artwork. Leave empty for the default: \"Editorial illustration of <person> · AI-assisted artwork, MP Luminaries\"."
+      - name: imagePrompt
+        label: Image prompt (for auto-generated artwork)
+        type: text
+        description: Used by the site's image bot to create the illustration when the Artwork field is empty. Must request painterly, non-photorealistic art with no text in the image.
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+        description: One or two sentences shown on the homepage and in link previews.
+      - name: sources
+        label: Sources
+        type: object
+        list: true
+        description: Published reporting this story draws on. Listed at the end of the article.
+        fields:
+          - name: title
+            label: Source title
+            type: string
+            required: true
+          - name: url
+            label: Link
+            type: string
+            required: true
+            pattern:
+              regex: "^https?://.+"
+              message: Must be a full URL starting with http:// or https://
+      - name: body
+        label: Article body
+        type: rich-text
+
+  - name: settings
+    label: Site settings
+    type: file
+    path: src/_data/site.json
+    description: Site-wide name, tagline and sections. Changing a section slug breaks existing links — avoid unless you know what you are doing.
+    fields:
+      - name: name
+        label: Site name
+        type: string
+        required: true
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: description
+        label: Site description
+        type: text
+      - name: url
+        label: Site URL
+        type: string
+      - name: categories
+        label: Sections
+        type: object
+        list: true
+        fields:
+          - name: slug
+            label: Slug (do not change for existing sections)
+            type: string
+            required: true
+          - name: name
+            label: Display name
+            type: string
+            required: true
