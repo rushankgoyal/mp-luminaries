@@ -31,18 +31,36 @@ function frontMatter(text) {
 let failures = 0;
 for (const file of readdirSync(ARTICLES).filter((f) => f.endsWith(".md"))) {
   const fm = frontMatter(readFileSync(join(ARTICLES, file), "utf8"));
-  if (!fm.image) continue;
-  const target = join("src", fm.image);
+  // Stories created without an explicit image path (e.g. via the editor
+  // portal) get the same default the site templates compute.
+  const image = fm.image || `/assets/images/${file.replace(/\.md$/, "")}.png`;
+  const target = join("src", image);
   if (existsSync(target)) continue;
 
-  const prompt = fm.imagePrompt || housePrompt(fm.person || "the subject", Boolean(fm.imageRef));
   console.log(`generating ${target} (ref: ${fm.imageRef || "none"})`);
   try {
+    const prompt = fm.imagePrompt || housePrompt(fm.person || "the subject", Boolean(fm.imageRef));
     await generatePortrait(target, prompt, fm.imageRef);
     console.log("  saved");
   } catch (err) {
-    failures++;
-    console.error(`  FAILED: ${err.message}`);
+    if (!fm.imageRef) {
+      failures++;
+      console.error(`  FAILED: ${err.message}`);
+      continue;
+    }
+    // A dead or unfetchable reference photo must not block the edition —
+    // retry as an evocative no-likeness illustration.
+    console.error(`  reference failed (${err.message}); retrying without reference`);
+    try {
+      const prompt = fm.imagePrompt || housePrompt(fm.person || "the subject", false);
+      await generatePortrait(target, prompt);
+      console.log("  saved (no reference)");
+    } catch (err2) {
+      failures++;
+      console.error(`  FAILED: ${err2.message}`);
+    }
   }
 }
+// Non-zero exit marks the workflow run red so the failure is visible, but the
+// workflow still commits successful images and deploys (see deploy.yml).
 process.exit(failures ? 1 : 0);

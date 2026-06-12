@@ -28,7 +28,10 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: node scripts/generate-missing-images.mjs
+      # Commit whatever artwork succeeded even if some generations failed —
+      # a failed image must not throw away the successful ones.
       - name: Commit generated images
+        if: always()
         run: |
           if ! git diff --quiet || [ -n "$(git status --porcelain src/assets/images)" ]; then
             git config user.name "mp-luminaries-bot"
@@ -38,8 +41,13 @@ jobs:
             git push origin main
           fi
 
+  # Build and deploy even if image generation failed: the site holds back
+  # stories whose artwork is missing (see src/articles/articles.11tydata.js),
+  # so a broken image source can never block the whole edition. The failed
+  # images job still marks the run red so the problem stays visible.
   build:
     needs: images
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -57,6 +65,7 @@ jobs:
 
   deploy:
     needs: build
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
